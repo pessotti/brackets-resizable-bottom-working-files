@@ -1,7 +1,7 @@
 {
     "name": "pessotti.resizable-bottom-working-files",
     "title": "Resizable Bottom Working Files",
-    "description": "Brackets extension to reposition Working Files in sidebar and make it resizable.",
+    "description": "Brackets extension to reposition Working Files in sidebar and make it resizable. (Toggle it in View Menu)",
     "homepage": "https://github.com/pessotti/brackets-resizable-bottom-working-files",
     "version": "1.0",
     "author": "Hugo Pessotti <hpessotti@gmail.com>",
