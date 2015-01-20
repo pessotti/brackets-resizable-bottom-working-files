@@ -12,10 +12,14 @@ define(function (require, exports, module) {
 	var Resizer = brackets.getModule("utils/Resizer");
 
 	var CommandManager = brackets.getModule("command/CommandManager"),
-			Menus = brackets.getModule("command/Menus"),
-			PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
-			prefs = PreferencesManager.getExtensionPrefs("resizeBottomWorkingFiles"),
-			menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU);
+		Menus = brackets.getModule("command/Menus"),
+		PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
+		prefs = PreferencesManager.getExtensionPrefs("resizeBottomWorkingFiles"),
+		menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU);
+
+	// fix width of current working file selection when resizing the working files panel
+	var sidebar_selection = $('.sidebar-selection');
+	sidebar_selection[0].style.setProperty('width','100%','important');
 
 	// menu handlers
 	CommandManager.register("Bottom Working Files", 'pessotti.bottom-working-files', function() {
@@ -31,7 +35,7 @@ define(function (require, exports, module) {
 	menu.addMenuItem('pessotti.resize-working-files');
 
 	// set handlers when preferences are changed
-	prefs.definePreference('bottomWorkingFiles', 'boolean', 'false').on('change', function() {
+	prefs.definePreference('bottomWorkingFiles', 'boolean', 'true').on('change', function() {
 		CommandManager.get('pessotti.bottom-working-files').setChecked(prefs.get('bottomWorkingFiles'));
 
 		if (prefs.get('bottomWorkingFiles')) {
@@ -52,7 +56,7 @@ define(function (require, exports, module) {
 		}
 	});
 
-	prefs.definePreference('resizeWorkingFiles', 'boolean', 'false').on('change', function() {
+	prefs.definePreference('resizeWorkingFiles', 'boolean', 'true').on('change', function() {
 		CommandManager.get('pessotti.resize-working-files').setChecked(prefs.get('resizeWorkingFiles'));
 
 		Resizer.removeSizable($('#working-set-list-container'));
