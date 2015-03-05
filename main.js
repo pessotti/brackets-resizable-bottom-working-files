@@ -15,7 +15,10 @@ define(function (require, exports, module) {
 		Menus = brackets.getModule("command/Menus"),
 		PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
 		prefs = PreferencesManager.getExtensionPrefs("resizeBottomWorkingFiles"),
-		menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU);
+		menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU),
+		ExtensionUtils = brackets.getModule("utils/ExtensionUtils");
+		
+	ExtensionUtils.loadStyleSheet(module, "main.css");
 
 	// fix width of current working file selection when resizing the working files panel
 	var sidebar_selection = $('.sidebar-selection');
